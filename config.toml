@@ -3,7 +3,7 @@ title = "The Data Witch"
 author = "Nathania Johnson"
 canonifyurls = true
 languagecode = "en"
-theme = "hugo-black-and-light-theme"
+theme = "hugo-black-and-light-theme-1"
 
 pygmentsstyle       = "bw"
 pygmentscodefences  = true
