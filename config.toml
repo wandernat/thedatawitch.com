@@ -1,10 +1,10 @@
-baseurl = "https://www.thedatawitch.com/"
+baseurl = "https://thedatawitch.com/"
 title = "The Data Witch"
 author = "Nathania Johnson"
 canonifyurls = true
 languagecode = "en"
-theme = "hugo-black-and-light-theme-1"
-
+theme = "fillorian-theme"
+Paginate = 10
 pygmentsstyle       = "bw"
 pygmentscodefences  = true
 
