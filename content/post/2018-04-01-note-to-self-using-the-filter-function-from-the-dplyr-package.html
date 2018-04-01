@@ -1,0 +1,69 @@
+---
+title: 'Note to Self: Using the filter and select functions from the dplyr package'
+author: ''
+date: '2018-04-01'
+slug: note-to-self-using-the-filter-function-from-the-dplyr-package
+categories: []
+tags: []
+---
+
+
+
+<p>This is the first post in a series where I write to myself regarding the various data science spells I’m learning. Today’s spell: dplyr’s filter function.</p>
+<p>For some reason, upon learning how to filter data with the dplyr package, I thought that function was designed to only remove or discard data, specifically columns. That is not the case and I’m writing this blog post to try and correct this automatic thinking in my brain. If it is of use to my fellow witches, so be it.</p>
+<p>First of all, when you just want to select one column, use the select function. For example, let’s check out this dataset of health indicators for all 100 counties in North Carolina from 2001 to 2015. Let’s say I just wanted to learn about access to dentists. I might want to just select the column for dentists per 10,000 in 2014. First let’s read in the data:</p>
+<pre class="r"><code>nc_health &lt;- read_delim(here(&quot;static&quot;, &quot;data&quot;, &quot;county-healthy-indicators-2001-2015.csv&quot;), 
+                                                  &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE)
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   County = col_character()
+## )
+## See spec(...) for full column specifications.</code></pre>
+<p>Now, let’s select the matching column and then look at the first few rows to see what happened:</p>
+<pre class="r"><code>nc_dentists &lt;- nc_health %&gt;%
+  select(&quot;County&quot;, &quot;Dentists per 10,000 pop: 2014&quot;)
+
+head(nc_dentists)
+## # A tibble: 6 x 2
+##   County         `Dentists per 10,000 pop: 2014`
+##   &lt;chr&gt;                                    &lt;dbl&gt;
+## 1 North Carolina                           4.70 
+## 2 Carteret                                 7.21 
+## 3 Cleveland                                4.08 
+## 4 Chatham                                  1.89 
+## 5 Bladen                                   1.71 
+## 6 Bertie                                   0.485</code></pre>
+<p>As you can see, the two columns passed through select were the only ones pulled into the new data frame.</p>
+<p>Now let’s check out the filter function. (Since the dataframe has roughly 80 variables, we’re going to continue using select to return only a few variables.)</p>
+<p>Filter is used to return rows matching certain criteria. Let’s say you only wanted to look at the health indicators for counties with a small population. You can use the filter function to return only the counties with a population of less than 50,000:</p>
+<pre class="r"><code>small_pop &lt;- nc_health %&gt;%
+  select(`County`, `2015 NCHS Bridged Pop: total pop`) %&gt;%
+  filter(`2015 NCHS Bridged Pop: total pop` &lt; 50000)
+
+head(small_pop)
+## # A tibble: 6 x 2
+##   County       `2015 NCHS Bridged Pop: total pop`
+##   &lt;chr&gt;                                     &lt;dbl&gt;
+## 1 Bladen                                   34318.
+## 2 Bertie                                   20199.
+## 3 Transylvania                             33211.
+## 4 Hyde                                      5526.
+## 5 Beaufort                                 47651.
+## 6 Anson                                    25759.</code></pre>
+<p>You <em>can</em> use filter to discard certain criteria, but you’ll need to cast the exclamation mark (“!”) into your brew. Let’s say you wanted to only view counties with high preterm birth rates. You could exclude counties that have a preterm birth rate less than 10.0 like this:</p>
+<pre class="r"><code>most_preterm &lt;- nc_health %&gt;%
+  select(`County`, `Phys Assts per 10,000 pop: 2014`, `Preterm Births : 2011-2015`) %&gt;%
+  filter(!`Preterm Births : 2011-2015` &lt; 10)
+
+head(most_preterm)
+## # A tibble: 6 x 3
+##   County         `Phys Assts per 10,000 pop: 2014` `Preterm Births : 2011…
+##   &lt;chr&gt;                                      &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 North Carolina                              4.81                    10.0
+## 2 Carteret                                    4.61                    10.9
+## 3 Cleveland                                   2.55                    10.9
+## 4 Bladen                                      1.99                    10.6
+## 5 Bertie                                      2.43                    13.7
+## 6 Cumberland                                  7.62                    10.9</code></pre>
+<p>So that’s the basics of the select and filter functions in dplyr. And now hopefully I can remember that filter chooses instead of removes (unless the ! is placed first).</p>
