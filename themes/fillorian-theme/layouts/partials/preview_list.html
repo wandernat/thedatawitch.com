@@ -1,0 +1,11 @@
+{{ $paginator := .Paginate (where .Data.Pages "Type" "!=" "page") }}
+{{ range .Paginator.Pages }}
+  {{ $url := replace .Permalink .Site.BaseURL "" }}
+
+  {{ if or (eq .Type "posts") (eq .Type "post") }}
+    {{ partial "preview_post.html" . }}
+  {{ end }}
+
+{{ end }}
+
+{{ partial "pagination.html" . }}

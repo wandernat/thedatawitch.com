@@ -1,0 +1,12 @@
+name = "Fillorian Theme"
+license = "MIT"
+licenselink = "https://jnjosh.mit-license.org"
+description = "A personal, minimal blog theme for Hugo."
+homepage = "https://jnjosh.com"
+tags = ["blog", "personal", "minimal" ]
+features = ["Blog", "Personal Blog", "Responsive"]
+min_version = 0.14
+
+[author]
+  name = "Josh Johnson"
+  homepage = "https://jnjosh.com"
