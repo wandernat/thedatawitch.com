@@ -5,8 +5,12 @@ canonifyurls = true
 languagecode = "en"
 theme = "fillorian-theme"
 Paginate = 10
-pygmentsstyle       = "bw"
-pygmentscodefences  = true
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+pygmentsStyle = "bw"
+pygmentsCodefences = true
+pygmentsUseClassic = true
 
 [params]
   sitename = "The Data Witch"

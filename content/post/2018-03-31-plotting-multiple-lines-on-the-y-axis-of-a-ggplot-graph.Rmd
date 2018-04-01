@@ -47,7 +47,7 @@ Setting the col argument for each geom_line() function after the y argument, wil
 Check out the code and the graph below:
 
 ```{r}
-ggplot(data = ev_csv_3, aes(x = as.numeric(YEAR))) +
+  ggplot(data = ev_csv_3, aes(x = as.numeric(YEAR))) +
   geom_line(aes(y = HEV, col = "Hybrid")) +
   geom_line(aes(y = PHEV, col = "Plugin hybrid electric")) +
   geom_line(aes(y = EV, col = "Battery only electric")) +

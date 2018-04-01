@@ -15,7 +15,7 @@ tags:
 <p>In order to have multiple y-axis lines, simply skip entering a y argument in the aes function in the first line of the ggplot call. Then, in multiple, subsequent geom_line() functions, set the y axis to each variable.</p>
 <p>Setting the col argument for each geom_line() function after the y argument, will give a different color to each line and provide a legend explaining the different lines on the graph.</p>
 <p>Check out the code and the graph below:</p>
-<pre class="r"><code>ggplot(data = ev_csv_3, aes(x = as.numeric(YEAR))) +
+<pre class="r"><code>  ggplot(data = ev_csv_3, aes(x = as.numeric(YEAR))) +
   geom_line(aes(y = HEV, col = &quot;Hybrid&quot;)) +
   geom_line(aes(y = PHEV, col = &quot;Plugin hybrid electric&quot;)) +
   geom_line(aes(y = EV, col = &quot;Battery only electric&quot;)) +
