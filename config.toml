@@ -1,0 +1,23 @@
+baseurl = "https://www.thedatawitch.com/"
+title = "The Data Witch"
+author = "Nathania Johnson"
+canonifyurls = true
+languagecode = "en"
+theme = "hugo-black-and-light-theme"
+
+pygmentsstyle       = "bw"
+pygmentscodefences  = true
+
+[params]
+  sitename = "The Data Witch"
+
+[[menu.main]]
+    name = "About"
+    url  = "/about"
+[[menu.main]]
+    name = "GitHub"
+    url  = "https://github.com/wandernat"
+[[menu.main]]
+    name = "Twitter"
+    url  = "https://twitter.com/nlj"
+

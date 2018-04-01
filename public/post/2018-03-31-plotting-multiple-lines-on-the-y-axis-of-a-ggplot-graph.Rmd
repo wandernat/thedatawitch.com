@@ -1,0 +1,62 @@
+---
+title: Plotting multiple lines on the y axis of a ggplot graph
+author: Nathania Johnson
+date: '2018-03-31'
+slug: plotting-multiple-lines-on-the-y-axis-of-a-ggplot-graph
+categories: []
+tags:
+  - ggplot
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+library(readr)
+library(here)
+library(stringr)
+library(ggplot2)
+```
+
+```{r include=FALSE} 
+ev_csv <- read_csv(here("static", "data", "table_01_19_1.csv"), col_names=FALSE)
+options(scipen=999)
+ev_csv_1 <- ev_csv[-1, ]
+ev_csv_2 <- ev_csv_1[-c(5:13), ]
+for (i in 2:ncol(ev_csv_2)) {
+  ev_csv_2[[i]] <- str_replace(ev_csv_2[[i]], "U", "0")
+}
+ev_csv_3 <- as.data.frame(t(ev_csv_2), stringsAsFactors = FALSE)
+colnames(ev_csv_3) <- as.character(unlist(ev_csv_3[1, ]))
+ev_csv_3 = ev_csv_3[-1, ]
+
+colnames(ev_csv_3) <- c("YEAR", "HEV", "PHEV", "EV")
+
+rownames(ev_csv_3) <- NULL
+for (i in 2:ncol(ev_csv_3)) {
+  ev_csv_3[[i]] <- as.numeric(str_replace(ev_csv_3[[i]], ",", ""))
+}
+```
+
+I wanted to plot the yearly sales of three different types of hybrid and electric vehicles on the same graph. The dataset was originally wide with years as columns and the types of cars as rows. After cleaning the data (making it skinner by switching cars to columns and years to rows) and saving it to the name "ev_csv_3", it was time to plot.
+
+In order to have multiple y-axis lines, simply skip entering a y argument in the aes function in the first line of the ggplot call. Then, in multiple, subsequent geom_line() functions, set the y axis to each variable. 
+
+Setting the col argument for each geom_line() function after the y argument, will give a different color to each line and provide a legend explaining the different lines on the graph. 
+
+Check out the code and the graph below:
+
+```{r}
+ggplot(data = ev_csv_3, aes(x = as.numeric(YEAR))) +
+  geom_line(aes(y = HEV, col = "Hybrid")) +
+  geom_line(aes(y = PHEV, col = "Plugin hybrid electric")) +
+  geom_line(aes(y = EV, col = "Battery only electric")) +
+  labs(title = "Hybrid and electric car sales 1999-2015", 
+       subtitle = "Source:  U.S. Department of Energy") + 
+  xlab("YEAR")
+```
+
+For those curious about this data, the Toyota Prius first went on sale in December 1997. But the style of Prius that most are familiar with came with the second generaation in 2003. Gas prices dipped from 2008 to 2011 which explains that dip. It would be interesting to plot gas prices against hybrid sales.
+
+As for electric cars, there are two types: batery only electric meaning hte only source of fuel is an electric-charged battery. The Nissan Leaf initially went on sale in 2010 and the Tesla Model S first went on sale in 2012. 
+
+The second type is a plugin hybrid electric (PHEV), with a smaller battery for city trips and a gas extender for longer trips. No need to worry about range anxiety. The Chevrolet Volt first went on sale in 2010. Toyota released a Prius PHEV in 2012 and Ford also released their C-Max Energi PHEV in 2012. 
+
