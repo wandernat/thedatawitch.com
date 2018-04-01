@@ -1,0 +1,245 @@
+
+body {
+    font: 16px/24px "Helvetica Neue", sans-serif;
+    line-height: 24px;
+  }
+  
+ a[href] {
+    color: #522290;
+    text-decoration: none;
+}
+  
+a:hover {
+  text-decoration: underline;
+}
+  
+h1, h2, h3, h4 {
+  color: #666666;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+  
+.content {
+  flex: 1;
+}
+
+/* Header */
+
+header {
+  padding: 40px 0 0 0;
+}
+  
+header h1 {
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Alice', serif;
+    font-size: 42px;
+    line-height: 32px;
+    margin: 0 auto;
+    padding: 10px 10px 0 10px;
+    max-width: 720px;
+    color: #5B636E;
+}
+
+header h1 > a:hover {
+    text-decoration: none;
+}
+
+/* Navigation */
+
+nav {
+    margin: auto;
+    max-width: 720px;
+    text-align: center;
+}
+  
+.menu {
+    padding: 8px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: auto;
+    -webkit-margin-before: 0px;
+    -webkit-padding-start: 0px;
+}
+  
+nav ul > li {
+    display: inline;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10pt;
+    font-family: 'Alice', serif;
+    font-weight: bold;
+}
+
+nav li > a[href] {
+    color: #999999;
+}
+
+/* Pagination */
+
+.pagination {
+  text-align: center;
+  margin: 30px auto;
+}
+  
+.pagination span {
+  color: #dddddd;
+}
+
+/* Articles */
+  
+.post, .page, .post-groups {
+  margin: 40px auto;
+  max-width: 780px;
+}
+  
+.post > p, .page > p {
+  color: #666666;
+  font-size: 18px;
+  line-height: 28px;
+  margin: 20px auto;
+  text-align: justify;
+}
+  
+.post h2, .page h2 {
+  margin: 0;
+  font-family: 'Alice', serif;
+  line-height: 32px;
+}
+  
+article .postmeta {
+    line-height: 22px;
+    color: #999999;
+    margin: 0 auto;
+    padding: 5px 0 0 0;
+}
+  
+.post-group {
+    display: flex;
+    flex-flow: row wrap;
+    margin: auto;
+}
+  
+.post-group-item {
+    flex: auto;
+    width: 40%;
+    margin: 5px;
+    font-size: 10pt;
+    color: #999999;
+}
+  
+.post-group-item:hover {
+    background-color: #f6f6f6;
+}
+  
+.post-group-item h3 {
+    color: #999999;
+    font-size: 16pt;
+    margin: 0;
+    padding: 6px 0 0 6px;
+    font-weight: normal;
+}
+  
+.post-group-item ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 0 6px;
+}
+
+@media screen
+and (max-width: 780px) {
+
+  article {
+    margin: 0;
+    padding: 20px;
+  }
+
+  header {
+    padding: 0;
+  }
+
+  header h1 {
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  nav ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul > li {
+    background-color: #fafafa;
+    display:list-item;
+    float: none;
+    margin: 0;
+    padding: 10px;
+    border-bottom: #f2f2f2 1px solid;
+  }
+
+  nav ul:first-child {
+    border-top: #f2f2f2 1px solid;
+  }
+
+  .post-group-item {
+    width: 100%;
+  }
+}
+
+/* Code Styles */
+
+pre, code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background-color: #f7f7f7;
+}
+
+code {
+  font-size: 12px;
+  padding: 4px;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+  word-wrap: normal;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+}
+
+pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+pre code::before,
+pre code::after {
+  content: normal;
+}
