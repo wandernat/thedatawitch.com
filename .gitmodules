@@ -1,0 +1,3 @@
+[submodule "themes/fillorian-theme"]
+	path = themes/fillorian-theme
+	url = git@github.com:jnjosh/fillorian-theme.git
